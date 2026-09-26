@@ -1,0 +1,169 @@
+
+Guideline → Annotate → Validate → Sample → Measure Agreement → Resolve Disagreements → Detect Noise/Bias → Reviewer Feedback → Correct → Re-QA
+
+
+1. Annotation Guidelines
+
+Annotation guidelines are the rules that explain what to label, how to label it, and what to do with ambiguous cases.
+
+First, I read the complete annotation guideline before starting the task.
+I identify all labels, definitions, inclusion/exclusion rules, and examples.
+I follow the latest approved version of the guideline.
+For entity annotation, I follow the defined start and end boundaries.
+I don't create my own interpretation when the guideline is unclear.
+I maintain notes for unusual or edge cases.
+For example, the sentence is: "Apple released a new iPhone."
+If the task is organization recognition, Apple should be labeled as an organization.
+iPhone may be a product entity if the guideline includes product labels.
+If the guideline says to exclude punctuation, I don't include the period.
+If two rules conflict, I follow the documented priority/version hierarchy.
+Unclear cases are flagged for reviewer clarification.
+
+Interview example:
+
+"I treat annotation guidelines as the source of truth and always follow the latest approved version rather than making assumptions."
+
+2. Label Consistency
+
+Label consistency means applying the same label to similar data throughout the dataset.
+
+I first understand the exact definition of every label.
+I create a small set of examples for frequently occurring cases.
+Similar inputs should receive the same label unless context changes the meaning.
+I avoid changing labeling decisions based on personal interpretation.
+I periodically review previously annotated samples.
+For example: "I want to buy a laptop" → PURCHASE_INTENT.
+"Where can I purchase a laptop?" should normally receive the same intent if the guideline defines both as purchase intent.
+However, "My laptop is not working" would be TECHNICAL_SUPPORT.
+I use context rather than simply matching keywords.
+I monitor repeated mistakes across batches.
+If I discover inconsistent labeling, I correct the affected records according to the latest guideline.
+Consistency is especially important because inconsistent training data can negatively affect model performance.
+3. Inter-Annotator Agreement
+
+Inter-annotator agreement measures how consistently different annotators label the same data.
+
+A sample of the same dataset is independently labeled by two or more annotators.
+Their annotations are then compared.
+Simple agreement can be measured using percentage agreement.
+For classification tasks, metrics such as Cohen's Kappa can be used for two annotators.
+Fleiss' Kappa can be used for multiple annotators.
+For some NLP tasks, precision, recall, and F1 are useful for comparing predicted spans.
+Example: 100 text samples are independently labeled by two annotators.
+They agree on 92 samples.
+Basic agreement is therefore 92%.
+The remaining 8 samples are reviewed to understand why disagreements occurred.
+If most disagreements involve the same label boundary, the guideline may need clarification.
+The goal is not simply a high score but consistent and explainable annotation decisions.
+4. Disagreement Resolution
+
+Disagreement resolution is the process of deciding what to do when annotators assign different labels.
+
+First, I compare both annotations against the official guideline.
+I identify the exact point of disagreement.
+I check whether the disagreement is about the label, entity boundary, or context.
+I avoid choosing an answer based only on personal opinion.
+If the guideline clearly defines the case, I follow that rule.
+Example: one annotator labels "New York" and another labels "New York City."
+I check the entity-span rule and the required level of specificity.
+If the guideline requires the complete city entity, I use "New York City."
+If the guideline specifies a different boundary convention, I follow that convention.
+I record the reason for the final decision.
+Recurring disagreements should be added to the guideline's edge-case examples.
+Difficult unresolved cases should be escalated to the reviewer or adjudicator.
+5. QA Sampling
+
+QA sampling means checking a representative subset of annotations instead of manually reviewing the entire dataset.
+
+I first determine the dataset size and expected error rate.
+I use random sampling to obtain unbiased quality measurements.
+I also use risk-based sampling for critical or high-impact labels.
+Annotators or batches with previous quality problems can receive additional samples.
+Rare classes should receive sufficient coverage so they are not missed.
+Example: suppose we have 1,000,000 annotations.
+Instead of manually reviewing all one million records, we create a statistically appropriate audit sample.
+We independently review the selected records.
+We calculate the observed error rate and identify error patterns.
+Critical errors can trigger expanded sampling.
+Sampling results are documented by annotator, batch, label, and error type.
+This provides scalable quality control while controlling review effort.
+6. Rare-Error Detection
+
+Rare-error detection focuses on finding errors that may occur infrequently but have high business or model impact.
+
+A simple random sample may miss extremely rare errors.
+Therefore, I combine random sampling with risk-based sampling.
+I specifically target rare labels and historically problematic categories.
+I also review high-impact decisions separately.
+Example: suppose the normal annotation error rate is around 0.1%.
+A random audit could potentially miss those errors.
+I therefore oversample critical labels or batches with previous failures.
+I use independent reviewers to validate those records.
+I track errors by category, annotator, batch, and severity.
+If critical errors are discovered, I increase the sampling rate.
+I investigate whether the problem comes from guidelines, training, tooling, or human mistakes.
+The objective is to detect low-frequency but high-impact failures early.
+7. Label Noise
+
+Label noise means the training dataset contains incorrect, inconsistent, ambiguous, or unreliable labels.
+
+Label noise can come from human mistakes, unclear guidelines, ambiguous data, or automated labeling.
+I look for conflicting labels for similar examples.
+I compare annotations between multiple reviewers.
+I identify records with unusually high disagreement.
+Example: five annotators label an image as CAT, but one labels it DOG.
+I review the original image and annotation guidelines.
+If it is clearly a cat, the DOG label is likely an annotation error.
+If the image is genuinely ambiguous, it may require a special UNCERTAIN rule.
+I don't automatically delete unusual labels without investigation.
+I maintain an audit trail of corrections.
+Repeated noise patterns may indicate a guideline or training problem.
+After correction, I re-run quality checks before using the dataset for model training.
+8. Data Validation
+
+Data validation ensures the annotation dataset is complete, structurally correct, and usable by downstream ML systems.
+
+I first check required columns and expected data types.
+I check for missing values and unexpected nulls.
+I identify duplicate records or duplicate annotation IDs.
+I validate that labels belong to the approved label set.
+For NLP data, I validate entity start/end offsets.
+For example, an entity's end position should not exceed the text length.
+I check that required metadata such as annotator ID, task ID, and timestamp is present.
+I also check for invalid or overlapping spans when overlap is not allowed.
+I compare input and output record counts.
+I generate an error report instead of silently deleting invalid records.
+Invalid records are quarantined for correction.
+Only after validation passes should the dataset move to the next ML pipeline stage.
+9. Bias / Hallucination Detection
+
+For AI-generated data, I check whether the model produces unsupported information, systematic bias, or incorrect labels.
+
+First, I compare the AI-generated output against the original source or reference data.
+I check whether every factual claim is supported by the available information.
+Unsupported information can indicate a hallucination.
+Example: the source says "John joined ABC in 2022," but the AI output says "John joined ABC in 2020."
+The 2020 statement is unsupported and should be flagged.
+For classification, I compare model labels against trusted human-reviewed labels.
+I analyze errors across different categories or demographic groups when such evaluation is appropriate and permitted.
+I look for systematic differences in error rates rather than relying on individual examples.
+I record the exact input, model output, expected result, and error type.
+I send uncertain or high-impact cases for human review.
+I use the findings to improve prompts, guidelines, training data, or evaluation criteria.
+The key principle is evidence-based verification rather than assuming the AI output is correct.
+10. Reviewer Feedback
+
+Reviewer feedback converts annotation mistakes into specific, actionable improvements.
+
+Feedback should identify the exact annotation that is incorrect.
+The reviewer should reference the applicable guideline or rule.
+The feedback should explain why the annotation is wrong.
+It should show what the correct annotation should be.
+Example: annotator labels "New York City" as LOCATION, but the task requires CITY.
+Reviewer feedback could explain that the guideline distinguishes city entities from broader locations.
+The corrected example should be provided to the annotator.
+Repeated errors should be tracked by category.
+If many annotators make the same mistake, the guideline may need improvement.
+If one annotator repeatedly makes the mistake, targeted retraining may be appropriate.
+Updated examples should be added to the annotation knowledge base when approved.
+Finally, I perform a follow-up QA sample to verify that the error rate has improved.
