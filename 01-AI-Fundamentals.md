@@ -9,7 +9,7 @@ Agentic AI
 
 Types of Machine Learning :
 
-The three primary types of Machine Learning (ML) are Supervised Learning, Unsupervised Learning, and Reinforcement Learning. Depending on the data structure and how the model learns, two hybrid categories—Semi-Supervised Learning and Self-Supervised Learning—are also widely recognized.
+The three primary types of Machine Learning (ML) are Supervised Learning, Unsupervised Learning, and Reinforcement Learning. Depending on the data structure and how the model learns, two hybrid categories—Semi-Supervised Learning and Self-Supervised Learning—are also widely recognized..
 
 Machine Learning
 │
