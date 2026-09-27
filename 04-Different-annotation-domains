@@ -1,0 +1,73 @@
+1)Text
+
+Learn:
+
+Text classification
+Sentiment
+Intent classification
+Named Entity Recognition
+Topic classification
+Toxicity/moderation
+Question/answer labeling
+Summarization evaluation
+LLM response evaluation
+
+Example:
+
+"How can I reset my password?"
+Intent → Password_Reset
+
+2) Image
+Learn:
+Classification
+Bounding box
+Polygon
+Semantic segmentation
+Instance segmentation
+Keypoints
+OCR
+Image quality assessment
+
+Example:
+Image contains:
+
+🚗 Car
+🚶 Person
+🚲 Bicycle
+
+You may need to draw bounding boxes around each object.
+
+3) Audio / Voice
+
+Learn:
+Transcription
+Speaker identification
+Speaker diarization
+Timestamping
+Emotion classification
+Noise classification
+Intent
+Pronunciation/accent-related labeling where the task requires it
+
+Example:
+00:00–00:04 Speaker 1:
+"I want to cancel my order."
+
+00:04–00:07 Speaker 2:
+"Sure, I can help you."
+
+4)  Video
+
+Learn:
+Object tracking
+Action recognition
+Event detection
+Frame-level labeling
+Temporal segmentation
+Object persistence
+Human activity recognition
+
+Example:
+0–3 sec    Person enters room
+3–7 sec    Person picks up bottle
+7–10 sec   Person drinks water
