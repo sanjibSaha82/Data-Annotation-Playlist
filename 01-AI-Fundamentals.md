@@ -38,9 +38,9 @@ House features → ₹75 lakh
 
 
 Common Algorithms
-Linear & Logistic Regression
-Decision Trees & Random Forests
-Support Vector Machines (SVM)
+Linear & Logistic Regression,
+Decision Trees & Random Forests,
+Support Vector Machines (SVM),
 K-Nearest Neighbors (KNN)
 
 
