@@ -1,5 +1,5 @@
 
-flow:
+ML work flow:
 
 Raw Data → Data Cleaning → Annotation/Labeling → Quality Assurance → Dataset → Model Training → Evaluation → Human Feedback → Production
 
