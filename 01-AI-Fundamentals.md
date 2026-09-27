@@ -11,33 +11,8 @@ Types of Machine Learning :
 
 The three primary types of Machine Learning (ML) are Supervised Learning, Unsupervised Learning, and Reinforcement Learning. Depending on the data structure and how the model learns, two hybrid categories—Semi-Supervised Learning and Self-Supervised Learning—are also widely recognized..
 
-Machine Learning
-│
-├── 1. Supervised Learning
-│   │
-│   ├── Classification
-│   │   └── Predict a category
-│   │       Example: Spam / Not Spam
-│   │
-│   └── Regression
-│       └── Predict a number
-│           Example: House price = ₹75 lakh
-│
-├── 2. Unsupervised Learning
-│   │
-│   ├── Clustering
-│   │   └── Find natural groups
-│   │       Example: Customer segmentation
-│   │
-│   └── Dimensionality Reduction
-│       └── Reduce number of features
-│           Example: PCA
-│
-├── 3. Semi-Supervised Learning
-│
-├── 4. Self-Supervised Learning
-│
-└── 5. Reinforcement Learning
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/aa4214d2-47cc-4461-97c5-e367e5712a6a" />
+
 
  1. Supervised Learning
 
