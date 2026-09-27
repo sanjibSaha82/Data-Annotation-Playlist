@@ -7,6 +7,19 @@ Agentic AI
 
 <img width="1312" height="1199" alt="Agentic AI" src="https://github.com/user-attachments/assets/810d2f0c-207b-48f4-956f-85b16ba5eeeb" />
 
+Types of Machine Learning :
+
+                    MACHINE LEARNING
+                          │
+          ┌───────────────┼────────────────┐
+          │               │                │
+     Supervised      Unsupervised    Reinforcement
+          │               │                │
+     Learn from       Find hidden      Learn by
+     labelled data    patterns         rewards
+          │               │                │
+     ┌────┴────┐      ┌───┴────┐           │
+ Classification Regression  Clustering  Trial → Reward
 
 
 
