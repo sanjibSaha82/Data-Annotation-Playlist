@@ -1,0 +1,22 @@
+
+flow:
+
+Raw Data → Data Cleaning → Annotation/Labeling → Quality Assurance → Dataset → Model Training → Evaluation → Human Feedback → Production
+
+
+| Topic                 | What to learn                                            |
+| --------------------- | -------------------------------------------------------- |
+| Annotation guidelines | How to convert business requirements into labeling rules |
+| Label taxonomy        | Classes, categories, attributes                          |
+| Bounding boxes        | Object detection                                         |
+| Segmentation          | Pixel-level/object-level labeling                        |
+| Classification        | Assigning categories                                     |
+| Entity extraction     | Person, organization, location, product, etc.            |
+| Sentiment             | Positive/negative/neutral                                |
+| Intent                | User request classification                              |
+| Transcription         | Audio → text                                             |
+| Speaker diarization   | Who spoke when                                           |
+| Text ranking          | Compare responses                                        |
+| Image annotation      | Objects, scenes, attributes                              |
+| Video annotation      | Objects + tracking + actions                             |
+| LLM evaluation        | Evaluate AI-generated answers                            |
