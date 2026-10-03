@@ -1,1 +1,124 @@
 
+1) doccano
+Read the documentation at https://doccano.github.io/doccano/
+
+Usage
+There are three options to run doccano:
+
+pip (Python 3.8+)
+Docker
+Docker Compose
+pip
+To install doccano, run:
+
+pip install doccano
+By default, SQLite 3 is used for the default database. If you want to use PostgreSQL, install the additional dependencies:
+
+pip install 'doccano[postgresql]'
+and set the DATABASE_URL environment variable according to your PostgreSQL credentials:
+
+DATABASE_URL="postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}?sslmode=disable"
+After installation, run the following commands:
+
+# Initialize database.
+doccano init
+# Create a super user.
+doccano createuser --username admin --password pass
+# Start a web server.
+doccano webserver --port 8000
+In another terminal, run the command:
+
+# Start the task queue to handle file upload/download.
+doccano task
+Go to http://127.0.0.1:8000/.
+
+Docker
+As a one-time setup, create a Docker container as follows:
+
+docker pull doccano/doccano
+docker container create --name doccano \
+  -e "ADMIN_USERNAME=admin" \
+  -e "ADMIN_EMAIL=admin@example.com" \
+  -e "ADMIN_PASSWORD=password" \
+  -v doccano-db:/data \
+  -p 8000:8000 doccano/doccano
+Next, start doccano by running the container:
+
+docker container start doccano
+Go to http://127.0.0.1:8000/.
+
+
+2) Label Studio
+https://labelstud.io/guide/install#Install-using-pip
+
+
+Install locally with Docker
+Official Label Studio docker image is here and it can be downloaded with docker pull. Run Label Studio in a Docker container and access it at http://localhost:8080.
+
+docker pull heartexlabs/label-studio:latest
+docker run -it -p 8080:8080 -v $(pwd)/mydata:/label-studio/data heartexlabs/label-studio:latest
+You can find all the generated assets, including SQLite3 database storage label_studio.sqlite3 and uploaded files, in the ./mydata directory.
+
+Override default Docker install
+You can override the default launch command by appending the new arguments:
+
+docker run -it -p 8080:8080 -v $(pwd)/mydata:/label-studio/data heartexlabs/label-studio:latest label-studio --log-level DEBUG
+Build a local image with Docker
+If you want to build a local image, run:
+
+docker build -t heartexlabs/label-studio:latest .
+Run with Docker Compose
+Docker Compose script provides production-ready stack consisting of the following components:
+
+Label Studio
+Nginx - proxy web server used to load various static data, including uploaded audio, images, etc.
+PostgreSQL - production-ready database that replaces less performant SQLite3.
+To start using the app from http://localhost run this command:
+
+docker-compose up
+Run with Docker Compose + MinIO
+You can also run it with an additional MinIO server for local S3 storage. This is particularly useful when you want to test the behavior with S3 storage on your local system. To start Label Studio in this way, you need to run the following command:
+
+# Add sudo on Linux if you are not a member of the docker group
+docker compose -f docker-compose.yml -f docker-compose.minio.yml up -d
+If you do not have a static IP address, you must create an entry in your hosts file so that both Label Studio and your browser can access the MinIO server. For more detailed instructions, please refer to our guide on storing data.
+
+Install locally with pip
+# Requires Python >=3.10
+pip install label-studio
+
+# Start the server at http://localhost:8080
+label-studio
+Install locally with poetry
+### install poetry
+pip install poetry
+
+### set poetry environment
+poetry new my-label-studio
+cd my-label-studio
+poetry add label-studio
+
+### activate poetry environment
+poetry shell
+
+### Start the server at http://localhost:8080
+label-studio
+Install locally with Anaconda
+conda create --name label-studio
+conda activate label-studio
+conda install psycopg2
+pip install label-studio
+Install for local development
+You can run the latest Label Studio version locally without installing the package from pypi.
+
+# Install all package dependencies
+pip install poetry
+poetry install
+# Run database migrations
+python label_studio/manage.py migrate
+python label_studio/manage.py collectstatic
+# Start the server in development mode at http://localhost:8080
+python label_studio/manage.py runserver
+
+
+
