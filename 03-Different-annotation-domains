@@ -119,26 +119,61 @@ Final annotation checklist for your audio:-
 [ ] Review all labels against the task guidelines
 
 
-4)  Video:Video annotation is the process of labeling objects, actions, people, and events 
+4)  Video: Video annotation is the process of labeling objects, actions, people, and events 
 in video footage so that AI models can understand what is happening over time.
 
 Learn:
-Object tracking
+Object tracking:--
+Tracking the same object as it moves across multiple video frames. The object is usually assigned a consistent tracking ID.
+Example:
+A red car moves along a road from left to right.
+Annotation:
+Car ID 01 → Frame 1, Frame 2, Frame 3.
+
 Action recognition:
-https://chatgpt.com/c/6ac9e4dd-1650-83ee-9e48-709080c0ae26
 Identifying an action performed in a video clip.
 Example:
 A person runs across a park.
 Label: RUNNING
 Other examples: Walking, Jumping, Clapping, Sitting.
 
-Event detection
-Frame-level labeling
-Temporal segmentation
-Object persistence
-Human activity recognition
-
+Event detection:--
+Identifying when a particular event occurs in a video and often recording its start and end times.
 Example:
-0–3 sec    Person enters room
-3–7 sec    Person picks up bottle
-7–10 sec   Person drinks water
+A person enters a room through a door.
+Label: PERSON_ENTERING_ROOM
+Example time: 00:05–00:08.
+
+Frame-level labeling:--
+Assigning labels to individual video frames, such as identifying visible objects or the scene.
+Example:
+Frame 1 shows a pedestrian; Frame 2 shows a pedestrian and a bicycle.
+Labels:
+- Frame 1: PERSON
+- Frame 2: PERSON, BICYCLE
+
+Temporal segmentation:--
+Dividing a video into time intervals and assigning a label to each interval.
+Example:
+A person walks, sits down, and then stands up.
+Segments:
+- 00:00–00:03: WALKING
+- 00:03–00:06: SITTING
+- 00:06–00:08: STANDING UP
+
+Object persistence:-
+Maintaining the identity of an object across frames for as long as it remains the same object, including 
+when it is temporarily hidden or reappears.
+Example:
+A pedestrian walks behind a bus and becomes visible again.
+Annotation:
+Keep the same ID, such as Person ID 07, when identity is confidently maintained.
+
+Human activity recognition:--
+Identifying a person's activity or behavior over a video sequence.
+Example:
+A person lifts a dumbbell repeatedly in a gym.
+Label: WEIGHTLIFTING
+Other examples: Cooking, Driving, Dancing, Washing Dishes.
+
+
