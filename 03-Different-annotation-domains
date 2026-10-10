@@ -2,20 +2,54 @@
 
 Learn:
 
-Text classification
-Sentiment
-Intent classification
-Named Entity Recognition
-Topic classification
-Toxicity/moderation
-Question/answer labeling
-Summarization evaluation
-LLM response evaluation
+Sentiment:--
+Identify the emotion or opinion expressed in text.
+Example text:
+“I love this phone. It works perfectly!”
+Label: Positive
+Other labels: Negative, Neutral.
 
-Example:
+Intent classification:--
+Identify what the user wants to do or achieve.
+Example text:
+“Can you help me reset my password?”
+Label: Password Reset
+Other labels: Complaint, Booking, Cancellation, Information Request.
 
-"How can I reset my password?"
-Intent → Password_Reset
+Named Entity Recognition(NER):--
+Identify and label names, places, organizations, dates, and other entities in text.
+Example text:
+“Rahul joined Google in Kolkata on Monday.”
+Labels:
+- Rahul → PERSON
+- Google → ORGANIZATION
+- Kolkata → LOCATION
+- Monday → DATE
+
+Toxicity/moderation:
+Identify abusive, threatening, hateful, or otherwise policy-violating content.
+Example text:
+“I will hurt you if you come here.”
+Label: Threatening Content
+Other labels: Non-toxic, Insult, Hate Speech, Threat. Labels depend on the annotation guidelines.
+
+Summarization evaluation:-
+Evaluate whether a short summary accurately represents the original text.
+Original:
+“Heavy rain caused flooding in the city, and schools were closed.”
+Summary:
+“Flooding from heavy rain led to school closures.”
+Label: Accurate Summary
+Other labels: Inaccurate, Incomplete, Contains Unsupported Information.
+
+LLM response evaluation:-
+Assess the quality of an AI model's response.
+User:
+“What is 2 + 2?”
+AI response:
+“The answer is 4.”
+Labels: Correct, Relevant, Clear
+Other evaluation criteria: Helpfulness, Safety, Completeness, and Instruction Following
 
 2) Image
 Learn:
@@ -85,11 +119,19 @@ Final annotation checklist for your audio:-
 [ ] Review all labels against the task guidelines
 
 
-4)  Video
+4)  Video:Video annotation is the process of labeling objects, actions, people, and events 
+in video footage so that AI models can understand what is happening over time.
 
 Learn:
 Object tracking
-Action recognition
+Action recognition:
+C:\Users\Dell\Downloads\2.jpg
+Identifying an action performed in a video clip.
+Example:
+A person runs across a park.
+Label: RUNNING
+Other examples: Walking, Jumping, Clapping, Sitting.
+
 Event detection
 Frame-level labeling
 Temporal segmentation
