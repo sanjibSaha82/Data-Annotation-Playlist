@@ -40,21 +40,50 @@ You may need to draw bounding boxes around each object.
 3) Audio / Voice
 
 Learn:
-Transcription
+Transcription:-
+conver voice to text 
 Speaker identification
-Speaker diarization
-Timestamping
-Emotion classification
-Noise classification
-Intent
-Pronunciation/accent-related labeling where the task requires it
+Who is speaking?
+Assign an ID to each distinct voice you hear.
+- One person reads all ten sentences → speaker_1 for all sentences.
+- Two different people read the sentences → assign speaker_1 and speaker_2 as appropriate.
+Speaker diarization:- 
+When does each speaker start and stop speaking?
+Speaker identification tells you who the speaker is. Diarization organizes the recording into time 
+segments and associates each segment with a speaker ID.
 
-Example:
-00:00–00:04 Speaker 1:
-"I want to cancel my order."
+Timestamping:- 
+At what time does each sentence or word begin and end?
 
-00:04–00:07 Speaker 2:
-"Sure, I can help you."
+Emotion classification:-
+What emotion is expressed through the voice?
+angry, sad, happy, neutral
+
+Noise classification:- 
+What unwanted or background sounds can you hear?
+
+Intent classification:-
+What is the speaker trying to accomplish?
+it is commonly used for conversational AI and virtual assistants. It is not necessarily required for speech-recognition datasets.
+
+Spoken example	--- Possible intent
+“Please open the door.”	---- request
+“What time is it?”	--- ask_question
+“Turn off the lights.”	-  command
+“Thank you for your help.”	-  express_gratitude
+
+Pronunciation/accent :- related labeling where the task requires it
+
+Final annotation checklist for your audio:-
+[ ] Verify the transcript against the audio
+[ ] Assign consistent speaker IDs
+[ ] Mark speaker turns and diarization segments
+[ ] Add accurate sentence- or word-level timestamps
+[ ] Label emotion only if required
+[ ] Label audible background noise if required
+[ ] Apply intent labels only if required
+[ ] Review all labels against the task guidelines
+
 
 4)  Video
 
